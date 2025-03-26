@@ -18,7 +18,7 @@ export default function Links(props: {open:boolean}) {
   return (
     <>
     { open ?
-        <nav className="absolute lg:block bg-blackfundo">
+        <nav className="absolute lg:block bg-blackfundo w-full">
           <ul className="flex flex-col text-gray my-8 gap-4">
             <li>  
               <Link href={"/"} className="flex gap-2 items-center ">
