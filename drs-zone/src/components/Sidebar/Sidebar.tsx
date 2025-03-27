@@ -22,7 +22,7 @@ export default function Sidebar() {
   }, []);
 
   return (
-    <div className="relative lg:block lg:w-1/5 xl:w-1/6 lg:h-full">
+    <section className="relative lg:block lg:w-1/5 xl:w-1/6 lg:h-full">
       <div className="flex justify-between items-center">
         <h1 className="text-stone-200 font-bold text-2xl">
           <span className="bg-green-600 px-1 rounded-sm">DRS</span> Zone
@@ -32,6 +32,6 @@ export default function Sidebar() {
         </button>
       </div>
       <Links open={isLg ? true : open} />
-    </div>
+    </section>
   );
 }
