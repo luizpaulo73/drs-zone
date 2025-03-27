@@ -5,6 +5,7 @@ export interface Driver {
 
 export interface Constructors {
     name: string;
+    constructorId: string;
 }
 
 export interface Pilot {

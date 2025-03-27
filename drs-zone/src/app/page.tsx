@@ -1,4 +1,4 @@
-import ClassificacaoResumida from "@/components/ClassificacaoResumida/ClassificacaoResumida";
+import ClassificacaoPilotos from "@/components/ClassificacaoPilotos/ClassificacaoPilotos";
 import Hero from "@/components/Hero/Hero";
 import ProximosEventos from "@/components/ProximosEventos/ProximosEventos";
 import Sidebar from "@/components/Sidebar/Sidebar";
@@ -11,7 +11,7 @@ export default function Home() {
         <div className="w-full">
           <Hero />
           <ProximosEventos />
-          <ClassificacaoResumida />
+          <ClassificacaoPilotos resumida={true}/>
         </div>
       </div>
     </main>
