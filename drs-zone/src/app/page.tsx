@@ -5,7 +5,7 @@ import ProximosEventos from "@/components/ProximosEventos/ProximosEventos";
 export default function Home() {
   return (
     <>
-      <Hero />
+      <Hero titulo="Dashboard" desc="Estatísticas Gerais da Fórmula 1"/>
       <ProximosEventos />
       <ClassificacaoPilotos resumida={true}/>
     </>
