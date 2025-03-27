@@ -1,19 +1,12 @@
 import Link from "next/link";
 import { ExternalLink } from "lucide-react";
+import { getPilotos } from "@/utils/pilotos";
+import { getEquipes } from "@/utils/equipes";
 
 export default async function ProximosEventos() {
 
-    const date = new Date();
-    const year = date.getFullYear();
-    const response = await fetch(`http://api.jolpi.ca/ergast/f1/${year}/driverstandings/`);
-    const response2 = await fetch(`https://api.jolpi.ca/ergast/f1/${year}/constructorstandings/?format=json`);
-  
-  if (!response.ok || !response2.ok) {
-    throw new Error("Erro ao carregar dados");
-  }
-
-    const pilotoResponse = await response.json();
-    const equipeResponse = await response2.json();
+    const pilotoResponse = await getPilotos();
+    const equipeResponse = await getEquipes();
 
     const piloto = pilotoResponse.MRData.StandingsTable.StandingsLists[0].DriverStandings[0];
     const equipe = equipeResponse.MRData.StandingsTable.StandingsLists[0].ConstructorStandings[0];
