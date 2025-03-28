@@ -1,15 +1,9 @@
 import { listaCores } from "@/data/corEquipes";
 import { Pilot } from "@/types/classificacaoResumida";
-import { getPilotos } from "@/utils/pilotos";
 
+export default function CorpoTabelaClassificacao({ resumida, pilotos }: { resumida: boolean, pilotos: Pilot[] }) {
 
-export default async function CorpoTabelaClassificacao(props: {resumida: boolean}) {
-
-    const { resumida } = props;
     let posicaoReal = 0;
-      const pilotoResponse = await getPilotos();
-      const pilotos: Pilot[] =
-        pilotoResponse.MRData.StandingsTable.StandingsLists[0].DriverStandings;
     
       const encontrarCorEquipe = (i: number) => {
         const corEquipe = listaCores.find(
