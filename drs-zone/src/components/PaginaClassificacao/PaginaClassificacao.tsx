@@ -40,7 +40,7 @@ export default function PaginaClassificacao() {
                           </> :
                           <>
                             <CabecalhoTabelaClassificacao coluna1='Posição' coluna2='Equipe' coluna3='Pilotos' coluna4='Pontos'/>
-                            <CorpoTabelaConstrutores resumida={false} equipes={equipes} pilotos={pilotos}/>
+                            <CorpoTabelaConstrutores resumida={false} equipes={equipes} />
                           </>}
             </table>
           </section>
