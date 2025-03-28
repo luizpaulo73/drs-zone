@@ -28,10 +28,20 @@ export default function PaginaClassificacao() {
   return (
     <>
           <Hero titulo="Classificações" desc="Atual Classificação do Campeonato"/>
-          <section className="text-white mt-5">
-            <div>
-              <button onClick={() => setCampeonato(!campeonato)} disabled={campeonato === true}>Campeonato de Pilotos</button>
-              <button onClick={() => setCampeonato(!campeonato)} disabled={campeonato === false}>Campeonato de Construtores</button>
+          <section className="text-white mt-5 flex flex-col gap-5">
+            <div className='flex w-full justify-evenly bg-zinc-900 py-1 px-1'>
+              <button 
+                onClick={() => setCampeonato(!campeonato)}
+                disabled={campeonato === true}
+                style={{backgroundColor: campeonato === true ? "#09090B" : "transparent"}}
+                className='w-1/2 p-2 font-semibold'
+                >Campeonato de Pilotos</button>
+              <button
+                onClick={() => setCampeonato(!campeonato)}
+                disabled={campeonato === false}
+                style={{backgroundColor: campeonato === false ? "#09090B" : "transparent"}}
+                className='w-1/2 p-2 font-bold'
+                >Campeonato de Construtores</button>
             </div>
             <table className="w-full border border-[#27272A]">
             {campeonato ? <>
