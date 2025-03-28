@@ -1,16 +1,30 @@
+"use client"
+
 import Link from "next/link";
 import CabecalhoTabelaClassificacao from "../CabecalhoTabelaClassificacao/CabecalhoTabelaClassificacao";
 import CorpoTabelaClassificacao from "../CorpoTabelaClassificacao/CorpoTabelaClassificacao";
+import { useEffect, useState } from "react";
+import { getPilotos } from "@/utils/pilotos";
 
-export default async function ClassificacaoPilotos(props: {resumida: boolean}) {
+export default function ClassificacaoPilotos(props: {resumida: boolean}) {
 
   const { resumida } = props;
+
+  const [pilotos, setPilotos] = useState([]);
+
+  useEffect(() => {
+    async function fetchData() {
+        const pilotoResponse = await getPilotos();
+        setPilotos(pilotoResponse.MRData.StandingsTable.StandingsLists[0].DriverStandings);
+    }
+    fetchData();
+}, []);
 
   return (
     <section className="text-white mt-5">
       <table className="w-full border border-[#27272A]">
-          <CabecalhoTabelaClassificacao />
-          <CorpoTabelaClassificacao resumida={resumida} />
+          <CabecalhoTabelaClassificacao coluna1='Posição' coluna2='Piloto' coluna3='Equipe' coluna4='Pontos'/>
+          <CorpoTabelaClassificacao resumida={resumida} pilotos={pilotos} />
         <tfoot>
           <tr className="py-3">
             <td colSpan={4} className="text-center p-2">
