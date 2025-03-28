@@ -29,7 +29,7 @@ export default function PaginaClassificacao() {
     <>
           <Hero titulo="Classificações" desc="Atual Classificação do Campeonato"/>
           <section className="text-white mt-5 flex flex-col gap-5">
-            <div className='flex w-full justify-evenly bg-zinc-900 py-1 px-1'>
+            <div className='flex w-full justify-evenly bg-zinc-900 py-1 px-1 text-xs sm:text-sm md:text-base'>
               <button 
                 onClick={() => setCampeonato(!campeonato)}
                 disabled={campeonato === true}
