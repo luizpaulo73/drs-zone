@@ -1,8 +1,7 @@
 import { listaCores } from '@/data/corEquipes';
-import { Constructors } from '@/types/classificacaoResumida';
-import React from 'react'
+import { Constructors, Pilot } from '@/types/classificacaoResumida';
 
-export default function CorpoTabelaConstrutores({ resumida, equipes }: { resumida: boolean, equipes: Constructors[],}) {
+export default function CorpoTabelaConstrutores({ resumida, equipes, piloto }: { resumida: boolean, equipes: Constructors[], piloto: Pilot[]}) {
 
     let posicaoReal = 0;
     
@@ -12,6 +11,15 @@ export default function CorpoTabelaConstrutores({ resumida, equipes }: { resumid
         );
         return corEquipe?.hexadecimal || "#fff";
       };
+
+      const encontrarPilotos = (i: number) => {
+        const pilotosDaEquipe = piloto && equipes 
+          ? piloto.filter(piloto => piloto.Constructors.some(constructor => constructor.constructorId === equipes[i].Constructor.constructorId))
+              .map(piloto => `${piloto.Driver.familyName}`).slice(0, 2)
+          : [];
+
+        return pilotosDaEquipe[0] + " e " + pilotosDaEquipe[1];
+      }
 
   return (
     <tbody>
@@ -36,7 +44,7 @@ export default function CorpoTabelaConstrutores({ resumida, equipes }: { resumid
                   <p>{info.Constructor.name}</p>
                 </td>
                 <td className="py-3 px-2 text-sm sm:text-base text-gray">
-                  {info.Constructor.name}
+                {encontrarPilotos(index)}
                 </td>
                 <td className="py-3 px-2 text-sm sm:text-base">
                   {info.points} pts
