@@ -3,9 +3,17 @@ export interface Driver {
     familyName: string;
 }
 
+export interface Constructor {
+    constructorId: string;
+    name: string;
+}
+
 export interface Constructors {
     name: string;
-    constructorId: string;
+    Constructor: Constructor;
+    constructorId: string
+    points: number;
+    positionText: string;
 }
 
 export interface Pilot {
