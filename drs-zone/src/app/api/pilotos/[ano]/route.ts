@@ -1,8 +1,7 @@
-export async function GET() {
-  
-    const date = new Date();
-    const year = date.getFullYear();
-    const url = `http://api.jolpi.ca/ergast/f1/${year}/driverstandings/?format=json`;
+export async function GET(context: { params: { ano: number } }) {
+
+    const { ano } = context.params;
+    const url = `http://api.jolpi.ca/ergast/f1/${ano}/driverstandings/?format=json`;
   
     try {
       const response = await fetch(url);
@@ -11,4 +10,4 @@ export async function GET() {
     } catch (error) {
       return new Response(JSON.stringify({ error: "Erro ao buscar pilotos" }), { status: 500 });
     }
-  }
+}
