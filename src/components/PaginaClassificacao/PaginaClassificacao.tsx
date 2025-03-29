@@ -4,8 +4,6 @@ import CabecalhoTabelaClassificacao from '@/components/CabecalhoTabelaClassifica
 import CorpoTabelaClassificacao from '@/components/CorpoTabelaClassificacao/CorpoTabelaClassificacao'
 import Hero from '@/components/Hero/Hero'
 import { Constructors, Pilot } from '@/types/classificacaoResumida';
-import { getPilotos, getPilotosPorAno } from '@/utils/pilotos';
-import { getEquipes, getEquipesPorAno } from '@/utils/equipes';
 import { useState, useEffect } from 'react'
 import CorpoTabelaConstrutores from '../CorpoTabelaConstrutores/CorpoTabelaConstrutores';
 

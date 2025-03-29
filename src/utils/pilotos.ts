@@ -4,6 +4,6 @@ export async function getPilotos() {
 }
 
 export async function getPilotosPorAno(ano: string) {
-  const response = await fetch(`/api/pilotos/${ano}`, { method: "GET" });
+  const response = await fetch(`/api/pilotos/${ano}`);
   return response.json();
 }
