@@ -1,13 +1,12 @@
-export async function GET(context: { params: { ano: number } }) {
-    
-    const { ano } = context.params;
-    const url = `https://api.jolpi.ca/ergast/f1/${ano}/constructorstandings/?format=json`;
+export async function GET(request, context) {
+  const { ano } = await context.params;
+  const url = `http://api.jolpi.ca/ergast/f1/${ano}/constructorstandings/?format=json`;
   
-    try {
-        const response = await fetch(url);
-        const data = await response.json();
-        return Response.json(data);
-      } catch (error) {
-        return new Response(JSON.stringify({ error: "Erro ao buscar pilotos" }), { status: 500 });
-      }
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+    return Response.json(data);
+  } catch (error) {
+    return Response.json({ error: error }, { status: 500 });
   }
+}

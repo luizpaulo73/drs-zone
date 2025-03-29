@@ -1,7 +1,7 @@
 export async function GET() {
     const date = new Date();
     const year = date.getFullYear();
-    const url = `https://api.jolpi.ca/ergast/f1/${year}/constructorstandings/?format=json`;
+    const url = `http://api.jolpi.ca/ergast/f1/${year}/constructorstandings/?format=json`;
   
     try {
         const response = await fetch(url);

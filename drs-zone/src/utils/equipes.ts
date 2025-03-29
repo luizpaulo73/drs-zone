@@ -3,8 +3,11 @@ export async function getEquipes() {
   return response.json();
 }
 
-export async function getEquipesPorAno(ano: number) {
-  const response = await fetch(`/api/equipes/${ano}`);
+export async function getEquipesPorAno(ano: string) {
+  const response = await fetch(`/api/equipes/${ano}`, {
+    method: "GET",
+    body: ano,
+  });
   return response.json();
 }
   

@@ -9,6 +9,6 @@ export async function GET() {
       const data = await response.json();
       return Response.json(data);
     } catch (error) {
-      return new Response(JSON.stringify({ error: "Erro ao buscar pilotos" }), { status: 500 });
+      return new Response(JSON.stringify({ error: {error} }), { status: 500 });
     }
   }

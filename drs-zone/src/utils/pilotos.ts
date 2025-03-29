@@ -3,7 +3,7 @@ export async function getPilotos() {
   return response.json();
 }
 
-export async function getPilotosPorAno(ano: number) {
-  const response = await fetch(`/api/pilotos/${ano}`);
+export async function getPilotosPorAno(ano: string) {
+  const response = await fetch(`/api/pilotos/${ano}`, { method: "GET" });
   return response.json();
 }
