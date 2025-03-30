@@ -1,6 +1,7 @@
 export interface Driver {
     givenName: string;
     familyName: string;
+    code: string;
 }
 
 export interface Constructor {
