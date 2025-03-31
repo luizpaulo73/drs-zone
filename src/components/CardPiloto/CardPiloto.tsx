@@ -1,9 +1,11 @@
 import { listaCores } from '@/data/corEquipes';
-import { Constructors, Pilot } from '@/types/classificacaoResumida'
+import { Pilot } from '@/types/classificacaoResumida'
 import { ExternalLink } from 'lucide-react';
-import React from 'react'
+import { useRouter } from 'next/navigation';
 
-export default function CardPiloto({pilotos , equipes} : {pilotos: Pilot[] , equipes : Constructors[]}) {
+export default function CardPiloto({pilotos} : {pilotos: Pilot[]}) {
+
+    const route = useRouter();
 
     const encontrarCorEquipe = (i: number) => {
             const corEquipe = listaCores.find(
@@ -15,7 +17,8 @@ export default function CardPiloto({pilotos , equipes} : {pilotos: Pilot[] , equ
   return (
     <>
     {pilotos.map((info, index) => (
-       <div key={index} className='border gap-5 border-l-4 flex flex-col justify-between hover:border-l-8 duration-500 max-w-[400px] group cursor-pointer' style={{ borderLeftColor: encontrarCorEquipe(index)}}>
+       <div key={index} onClick={() => route.push(`/pilotos/${info.Driver.driverId}`)}
+       className='border gap-5 border-l-4 flex flex-col justify-between hover:border-l-8 duration-500 max-w-[400px] group cursor-pointer' style={{ borderLeftColor: encontrarCorEquipe(index)}}>
             <div className='flex justify-end'>
                 <p className='text-white border border-gray max-w-fit px-2 rounded-full'>{info.points} pts</p>
             </div>

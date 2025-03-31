@@ -70,7 +70,7 @@ export default function Pilotos() {
           })}
         </select>
       <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:max-w-[80%] gap-4 mt-5">
-        <CardPiloto pilotos={pilotos} equipes={equipes}/>
+        <CardPiloto pilotos={pilotos}/>
       </section>
     </>
     
