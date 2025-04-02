@@ -8,23 +8,51 @@ import { useEffect, useState } from "react";
 import { Constructors, Pilot } from "@/types/classificacaoResumida";
 
 export default function ProximosEventos() {
+
+  const date = new Date();
+
   const [pilotos, setPilotos] = useState<Pilot[]>([]);
   const [equipes, setEquipes] = useState<Constructors[]>([]);
+  const [corrida, setCorrida] = useState(null);
+
   useEffect(() => {
     async function fetchData() {
-      const pilotoResponse = await getPilotos();
-      const equipeResponse = await getEquipes();
-      setPilotos(
-        pilotoResponse.MRData.StandingsTable.StandingsLists[0].DriverStandings
-      );
-      setEquipes(
-        equipeResponse.MRData.StandingsTable.StandingsLists[0]
-          .ConstructorStandings
-      );
+      try {
+        const pilotoResponse = await getPilotos();
+        const equipeResponse = await getEquipes();
+        
+        const corridaResponse = await fetch("/api/corrida");
+        const corridaData = await corridaResponse.json();
+        
+        setPilotos(
+          pilotoResponse.MRData.StandingsTable.StandingsLists[0].DriverStandings
+        );
+        
+        setEquipes(
+          equipeResponse.MRData.StandingsTable.StandingsLists[0]
+            .ConstructorStandings
+        );
+        
+        const corridas = corridaData.MRData.RaceTable.Races || [];
+        const agora = new Date();
+        
+        const proximaCorrida = corridas
+          .map(corrida => ({
+            ...corrida,
+            dateTime: new Date(`${corrida.date}T${corrida.time}`)
+          }))
+          .filter(corrida => corrida.dateTime > agora)
+          .sort((a, b) => a.dateTime - b.dateTime)[0];
+        
+        setCorrida(proximaCorrida || null);
+      } catch (error) {
+        console.error("Erro ao buscar dados:", error);
+      }
     }
+    
     fetchData();
   }, []);
-
+  
   const piloto = pilotos[0];
   const equipe = equipes[0];
   const pilotosDaEquipe =
@@ -46,7 +74,7 @@ export default function ProximosEventos() {
         <div>
           <h2 className="text-gray text-sm">Próxima Corrida</h2>
           <p className="text-white font-bold sm:text-2xl">
-            Grande Prêmio de Mônaco
+            {corrida?.raceName}
           </p>
         </div>
         <Link
@@ -76,7 +104,7 @@ export default function ProximosEventos() {
               </p>
             </div>
             <Link
-              href={"/"}
+              href={`/pilotos/${piloto.Driver.driverId}/${date.getFullYear()}/`}
               className="text-white p-2 hover:text-zinc-400 duration-300"
             >
               <ExternalLink />
