@@ -2,6 +2,7 @@ import { listaCores } from '@/data/corEquipes';
 import { Pilot } from '@/types/classificacaoResumida'
 import { ExternalLink } from 'lucide-react';
 import { useRouter } from 'next/navigation';
+import BordaComDegrade from '../BordaComDegrade/bordaComDegrade';
 
 export default function CardPiloto({pilotos, ano} : {pilotos: Pilot[], ano: number}) {
 
@@ -18,7 +19,8 @@ export default function CardPiloto({pilotos, ano} : {pilotos: Pilot[], ano: numb
     <>
     {pilotos.map((info, index) => (
        <div key={index} onClick={() => route.push(`/pilotos/${info.Driver.driverId}/${ano}`)}
-       className='border border-zinc-700 gap-5 border-l-4 flex flex-col justify-between hover:border-l-8 duration-500 max-w-[400px] group cursor-pointer' style={{ borderLeftColor: encontrarCorEquipe(index)}}>
+       className='gap-5 border-l-4 flex flex-col justify-between hover:border-l-8 duration-500 max-w-[400px] group cursor-pointer relative' style={{ borderLeftColor: encontrarCorEquipe(index)}}>
+          <BordaComDegrade cor={encontrarCorEquipe(index)}/> 
             <div className='flex justify-end'>
                 <p className='text-white border border-gray max-w-fit px-2 m-2 rounded-full'>{info.points} pts</p>
             </div>
